@@ -8,7 +8,7 @@ namespace MobilePhone.Battery
 {
     public class LiIonBattery : MobileBattery
     {
-        public LiIonBattery(double height, double width, double depth, double voltage, double maxCapacity) : base(height, width, depth, voltage, maxCapacity)
+        public LiIonBattery(double voltage, double maxCapacity) : base(voltage, maxCapacity)
         {
         }
 

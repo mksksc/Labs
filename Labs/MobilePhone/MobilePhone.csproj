@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battery\BatteryBase.cs" />
-    <Compile Include="Battery\IChargeable.cs" />
+    <Compile Include="Battery\IPoverUnit.cs" />
     <Compile Include="Battery\LiIonBattery.cs" />
     <Compile Include="Battery\MobileBattery.cs" />
+    <Compile Include="Charger\ICharger.cs" />
+    <Compile Include="Charger\iPhoneCharger.cs" />
     <Compile Include="Dynamic\MonoSpeaker.cs" />
     <Compile Include="Dynamic\Speaker.cs" />
     <Compile Include="Dynamic\StereoSpeaker.cs" />
@@ -53,7 +55,14 @@
     <Compile Include="Keyboard\NumericKeyboard.cs" />
     <Compile Include="Microphone\MicrophoneBase.cs" />
     <Compile Include="Microphone\MobileMicrophone.cs" />
-    <Compile Include="Phone\MobilePhone.cs" />
+    <Compile Include="Output\IOutput.cs" />
+    <Compile Include="PhoneJack\HeadsetBase.cs" />
+    <Compile Include="PhoneJack\iPhoneHeadset.cs" />
+    <Compile Include="PhoneJack\IPlayback.cs" />
+    <Compile Include="PhoneJack\PhoneSpeaker.cs" />
+    <Compile Include="PhoneJack\SamsungHeadset.cs" />
+    <Compile Include="PhoneJack\UnofficialiPhoneHeadset.cs" />
+    <Compile Include="Phone\MobilePhoneBase.cs" />
     <Compile Include="Phone\SimCorpPhone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\BaseTouch.cs" />
@@ -67,9 +76,7 @@
     <Compile Include="Screen\TouchManager.cs" />
     <Compile Include="Screen\TouchPosition.cs" />
     <Compile Include="Screen\TouchScreen.cs" />
-    <Compile Include="Simcard\KyivstarSimcard.cs" />
-    <Compile Include="Simcard\LifeSimcard.cs" />
-    <Compile Include="Simcard\SimcardBase.cs" />
+    <Compile Include="Simcard\Simcard.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

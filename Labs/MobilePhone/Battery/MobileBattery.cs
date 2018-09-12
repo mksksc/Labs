@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MobilePhone.Battery
 {
-    public abstract class MobileBattery : BatteryBase, IChargeable
+    public abstract class MobileBattery : BatteryBase, IPoverUnit
     {
         public virtual event EventHandler OnCharged;
         public virtual event EventHandler OnCharging;
@@ -28,7 +28,7 @@ namespace MobilePhone.Battery
             OnStopCharging?.Invoke(this,EventArgs.Empty);
         }
 
-        protected MobileBattery(double height, double width, double depth, double voltage, double maxCapacity) : base(height, width, depth, voltage, maxCapacity)
+        protected MobileBattery(double voltage, double maxCapacity) : base(voltage, maxCapacity)
         {
         }
     }

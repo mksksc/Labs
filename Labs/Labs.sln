@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labs1", "Labs\Labs1.csproj"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhone", "MobilePhone\MobilePhone.csproj", "{15CC03B2-A2DF-4FD7-9D1F-C64BB5F02372}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playback", "Playback\Playback.csproj", "{94117056-3769-482D-B04A-926C1CFB7DE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneTest", "PhoneTest\PhoneTest.csproj", "{48881EB3-7192-422D-AB71-D7DF378D7B7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{15CC03B2-A2DF-4FD7-9D1F-C64BB5F02372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15CC03B2-A2DF-4FD7-9D1F-C64BB5F02372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15CC03B2-A2DF-4FD7-9D1F-C64BB5F02372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94117056-3769-482D-B04A-926C1CFB7DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94117056-3769-482D-B04A-926C1CFB7DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94117056-3769-482D-B04A-926C1CFB7DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94117056-3769-482D-B04A-926C1CFB7DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48881EB3-7192-422D-AB71-D7DF378D7B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48881EB3-7192-422D-AB71-D7DF378D7B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48881EB3-7192-422D-AB71-D7DF378D7B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48881EB3-7192-422D-AB71-D7DF378D7B7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

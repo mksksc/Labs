@@ -7,19 +7,21 @@ using MobilePhone.Dynamic;
 using MobilePhone.Keyboard;
 using MobilePhone.Microphone;
 using MobilePhone.Screen;
-using MobilePhone.Simcard;
 using MobilePhone.Battery;
+using MobilePhone.PhoneJack;
+using MobilePhone.SimCard;
 
 namespace MobilePhone.Phone
 {
-    public abstract class MobilePhone
+    public abstract class MobilePhoneBase
     {
         public abstract BatteryBase Battery { get; protected set; }
         public abstract Speaker Speaker { get; protected set; }
         public abstract KeyboardBase Keyboard { get; protected set; }
         public abstract MicrophoneBase Microphone { get; protected set; }
         public abstract ScreenBase Screen { get; protected set; }
-        public abstract SimcardBase Simcard { get; protected set; }
+        public abstract Simcard Simcard { get; protected set; }
+        public IPlayback PlaybackComponent { get; set; }
 
         public string GetDescription()
         {
@@ -31,6 +33,11 @@ namespace MobilePhone.Phone
             descriptionBuilder.AppendLine($"Screen: {Screen.ToString()}");
             descriptionBuilder.AppendLine($"Simcard: {Simcard.ToString()}");
             return descriptionBuilder.ToString();
+        }
+
+        public void Play(object data)
+        {
+            PlaybackComponent.Play( data);
         }
     }
 }

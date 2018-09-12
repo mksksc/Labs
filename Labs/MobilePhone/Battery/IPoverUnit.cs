@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MobilePhone.Battery
 {
-    public interface IChargeable
+    public interface IPoverUnit
     {
         event EventHandler OnCharging;
         event EventHandler OnStopCharging;

@@ -11,5 +11,10 @@ namespace MobilePhone.Microphone
         public byte Volume { get; set; }
         public abstract void StartFetchingSound();
         public abstract void StopFetchingSound();
+
+        protected MicrophoneBase()
+        {
+            Volume = Byte.MaxValue;
+        }
     }
 }
