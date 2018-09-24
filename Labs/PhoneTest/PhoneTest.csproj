@@ -55,13 +55,20 @@
     <Compile Include="PhoneJackTest\OutputTest.cs" />
     <Compile Include="PhoneJackTest\iPhoneHeadsetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMSPhoneTest\MessageFormatterTest.cs" />
+    <Compile Include="SMSPhoneTest\SMSProviderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobilePhone\MobilePhone.csproj">
       <Project>{15CC03B2-A2DF-4FD7-9D1F-C64BB5F02372}</Project>
       <Name>MobilePhone</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SMS\SMS.csproj">
+      <Project>{83E77F65-BC6E-4D28-B8AD-540BFDAB2B3D}</Project>
+      <Name>SMS</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -10,6 +10,7 @@ using MobilePhone.Screen;
 using MobilePhone.Battery;
 using MobilePhone.PhoneJack;
 using MobilePhone.SimCard;
+using MobilePhone.SMS;
 
 namespace MobilePhone.Phone
 {
@@ -22,6 +23,7 @@ namespace MobilePhone.Phone
         public abstract ScreenBase Screen { get; protected set; }
         public abstract Simcard Simcard { get; protected set; }
         public IPlayback PlaybackComponent { get; set; }
+        public SMSProvider SMSProvider { get; set; }
 
         public string GetDescription()
         {
@@ -38,6 +40,11 @@ namespace MobilePhone.Phone
         public void Play(object data)
         {
             PlaybackComponent.Play( data);
+        }
+
+        public void ReceiveSMS(string message)
+        {
+            SMSProvider.ReceiveSMS(message);
         }
     }
 }

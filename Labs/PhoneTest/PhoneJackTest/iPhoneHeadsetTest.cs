@@ -8,7 +8,7 @@ namespace PhoneTest.PhoneJackTest
     public class iPhoneHeadsetTest
     {
         [TestMethod]
-        public void P1layTest()
+        public void PlayTest()
         {
             var output = new OutputTest();
             var iphoneheadset = new iPhoneHeadset(output);
