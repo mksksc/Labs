@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MobilePhone;
 
 namespace SMS.Formatter
 {
     public static class MessageFormatter
     {
-        public static string FormatNone(string msg) => msg;
-        public static string FormatStartTime(string msg) => $"[{DateTime.Now}] {msg}";
-        public static string FormatEndTime(string msg) => $"{msg} [{DateTime.Now}]";
-        public static string FormatCustom(string msg) => $"❤C#❤ {msg} ❤C#❤";
-        public static string FormatLowercase(string msg) => msg.ToLower();
-        public static string FormatUppercase(string msg) => msg.ToUpper();
+        public static string FormatNone(Message msg) => msg.Text;
+        public static string FormatStartTime(Message msg) => $"[{msg.ReceivingTime}] {msg.Text}";
+        public static string FormatEndTime(Message msg) => $"{msg.Text} [{msg.ReceivingTime}]";
+        public static string FormatCustom(Message msg) => $"❤C#❤ {msg.Text} ❤C#❤";
+        public static string FormatLowercase(Message msg) => msg.Text.ToLower();
+        public static string FormatUppercase(Message msg) => msg.Text.ToUpper();
     }
 }

@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\MsgFilter.cs" />
+    <Compile Include="Filters\MsgFilterObj.cs" />
     <Compile Include="Formatter\MessageFormatter.cs" />
     <Compile Include="SMSForm.cs">
       <SubType>Form</SubType>

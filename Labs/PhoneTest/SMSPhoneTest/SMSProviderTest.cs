@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MobilePhone.SMS;
+using MobilePhone;
 
 namespace PhoneTest.SMSPhoneTest
 {
@@ -10,10 +10,11 @@ namespace PhoneTest.SMSPhoneTest
         [TestMethod]
         public void SMSReceivedTest()
         {
-            var  provider = new SMSProvider();
+            var storage = new MessageStorage();
+            var  provider = new SMSProvider(storage);
             int invokecounter = 0;
             provider.SMSReceived += msg => invokecounter++;
-            provider.ReceiveSMS("Message #1 received");
+            provider.ReceiveSMS(new Message("9379992", "Wait for me!"));
             Assert.AreEqual(1, invokecounter);
         }
     }

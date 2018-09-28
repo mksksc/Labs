@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SMS.Formatter;
+using MobilePhone;
 
 namespace PhoneTest.SMSPhoneTest
 {
@@ -11,7 +12,8 @@ namespace PhoneTest.SMSPhoneTest
         public void FormatNoneTest()
         {
             string testmsg = "Message #1 received";
-            string formmsg= MessageFormatter.FormatNone(testmsg);
+            var message = new Message("111", testmsg);         
+            string formmsg= MessageFormatter.FormatNone(message);
             Assert.AreEqual(testmsg, formmsg);
         }
 
@@ -19,23 +21,26 @@ namespace PhoneTest.SMSPhoneTest
         public void FormatStartTimeTest()
         {
             string testmsg = "Message #1 received";
-            string formmsg = MessageFormatter.FormatStartTime(testmsg);
-            Assert.AreEqual($"[{DateTime.Now}] {testmsg}", formmsg);
+            var message = new Message("111", testmsg);
+            string formmsg = MessageFormatter.FormatStartTime(message);
+            Assert.AreEqual($"[{message.ReceivingTime}] {testmsg}", formmsg);
         }
 
         [TestMethod]
         public void FormatEndTimeTest()
         {
             string testmsg = "Message #1 received";
-            string formmsg = MessageFormatter.FormatEndTime(testmsg);
-            Assert.AreEqual($"{testmsg} [{DateTime.Now}]", formmsg);
+            var message = new Message("111", testmsg);
+            string formmsg = MessageFormatter.FormatEndTime(message);
+            Assert.AreEqual($"{testmsg} [{message.ReceivingTime}]", formmsg);
         }
 
         [TestMethod]
         public void FormatCustomTest()
         {
             string testmsg = "Message #1 received";
-            string formmsg = MessageFormatter.FormatCustom(testmsg);
+            var message = new Message("111", testmsg);
+            string formmsg = MessageFormatter.FormatCustom(message);
             Assert.AreEqual($"❤C#❤ {testmsg} ❤C#❤", formmsg);
         }
 
@@ -43,7 +48,8 @@ namespace PhoneTest.SMSPhoneTest
         public void FormatLowercaseTest()
         {
             string testmsg = "Message #1 received";
-            string formmsg = MessageFormatter.FormatLowercase(testmsg);
+            var message = new Message("111", testmsg);
+            string formmsg = MessageFormatter.FormatLowercase(message);
             Assert.AreEqual(testmsg.ToLower(), formmsg);
         }
 
@@ -51,7 +57,8 @@ namespace PhoneTest.SMSPhoneTest
         public void FormatUppercaseTest()
         {
             string testmsg = "Message #1 received";
-            string formmsg = MessageFormatter.FormatUppercase(testmsg);
+            var message = new Message("111", testmsg);
+            string formmsg = MessageFormatter.FormatUppercase(message);
             Assert.AreEqual(testmsg.ToUpper(), formmsg);
         }
     }

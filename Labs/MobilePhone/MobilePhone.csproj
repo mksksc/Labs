@@ -77,7 +77,10 @@
     <Compile Include="Screen\TouchPosition.cs" />
     <Compile Include="Screen\TouchScreen.cs" />
     <Compile Include="Simcard\Simcard.cs" />
+    <Compile Include="SMS\IMessageStorage.cs" />
+    <Compile Include="SMS\Message.cs" />
     <Compile Include="SMS\SMSProvider.cs" />
+    <Compile Include="SMS\MessageStorage.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

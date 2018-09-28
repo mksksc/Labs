@@ -8,49 +8,108 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MobilePhone.SMS;
+using MobilePhone;
 using SMS.Formatter;
+using SMS.Filters;
 
 namespace SMS
 {
     public partial class SMSForm : Form
     {
-        private delegate string FormatDelegate(string text);
+        private delegate string FormatDelegate(MobilePhone.Message text);
         private FormatDelegate Formatter;
-        private MobilePhoneBase MobilePhone;
+        private MobilePhoneBase Mobile;
         private int counter;
 
         public SMSForm()
         {
+            Mobile = new SimCorpPhone();
+
             InitializeComponent();
             MessageFormatCB.Items.AddRange(GetMessageFormatCBItems());
             MessageFormatCB.SelectedItem = MessageFormatCB.Items[0];
-            MobilePhone = new SimCorpPhone();
-            MobilePhone.SMSProvider.SMSReceived += OnSMSReceiver;
+            UsersComboBox.Items.Add("All");
+            UsersComboBox.SelectedItem = UsersComboBox.Items[0];
+            Mobile.MessageStorage.MessageAdded += OnSMSReceiver;
         }
 
-        private void SMSSendTimer_Tick(object sender, EventArgs e)
-        {
-            MobilePhone.ReceiveSMS($"Message #{counter++} received");
-        }
-
-        private void OnSMSReceiver(string message)
+        private void OnSMSReceiver(MobilePhone.Message message)
         {
             if (InvokeRequired)
             {
-                Invoke(new SMSProvider.SMSReceivedDelegate(OnSMSReceiver), message);
+                Invoke(new Action<MobilePhone.Message>(OnSMSReceiver), message);
                 return;
             }
 
-            string formattedMessage = Formatter(message);
-            MessagesRichTextBox.AppendText(formattedMessage + Environment.NewLine);
+            CheckIfNewUser(message);
+        }
+
+        private void CheckIfNewUser(MobilePhone.Message message)
+        {
+            if (!UsersComboBox.Items.Contains(message.User))
+            {
+                UsersComboBox.Items.Add(message.User);
+            }
         }
 
         private void MessageFormatCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             var item = (ItemMessageFormatCB)MessageFormatCB.SelectedItem;
             Formatter = item.Formatter;
+            RefreshMessagesView();
+        }
 
+        private void SearchField_Changed(object sender, EventArgs e)
+        {
+            RefreshMessagesView();
+        }
+
+        private void RefreshMessagesView()
+        {
+            var filterObj = new MsgFilterObj()
+            {
+                Messages = Mobile.MessageStorage.GetMessages(),
+                User = UsersComboBox.SelectedItem as string,
+                MessageText = MsgSearchTextBox.Text,
+                StartTime = null,
+                EndTime = null,
+                UseAndForCond = UseAndCheckBox.Checked
+            };
+
+            if (MsgStartDateTime.Checked) filterObj.StartTime = MsgStartDateTime.Value;
+            if (MsgEndDateTime.Checked) filterObj.EndTime = MsgEndDateTime.Value;
+
+            ShowMessages(MsgFilter.ApplyFilter(filterObj));
+        }
+
+        private void ShowMessages(IEnumerable<MobilePhone.Message> messages)
+        {
+            MessageListView.Items.Clear();
+
+            foreach (var message in messages)
+            {
+                MessageListView.Items.Add(new ListViewItem(new[] { message.User, Formatter(message) }));
+            }
+        }
+
+        private void SMSSendTimer_Tick(object sender, EventArgs e)
+        {
+            var msg = new MobilePhone.Message(GetRandomUser(), $"Message #{counter++} received");
+            Mobile.ReceiveSMS(msg);
+        }
+
+        private string GetRandomUser()
+        {
+            var users = new string[]
+            {
+                "+308751566825",
+                "+308865211124",
+                "+301111111111",
+                "+307777777777",
+                "+308333333333",
+            };
+            int index = new Random().Next(users.Length);
+            return users[index];
         }
 
         private ItemMessageFormatCB[] GetMessageFormatCBItems()
@@ -79,6 +138,11 @@ namespace SMS
             }
 
             public override string ToString() => Name;
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            RefreshMessagesView();
         }
     }
 }
