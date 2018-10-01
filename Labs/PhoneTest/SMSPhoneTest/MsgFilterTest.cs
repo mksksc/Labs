@@ -54,18 +54,14 @@ namespace PhoneTest.SMSPhoneTest
             {
                 Messages = messages,
                 User = "+3804554845",
-                MessageText = "Some text",
+                MessageText = "H",
                 StartTime = null,
                 EndTime = null,
                 UseAndForCond = false
             };
 
-            IEnumerable<Message> exp_msgs = new List<Message>
-            {
-                messages[0],messages[1]
-            };
             IEnumerable<Message> act_msgs = MsgFilter.ApplyFilter(filterObj);
-            bool isSequenceEqual = Enumerable.SequenceEqual(exp_msgs, act_msgs);
+            bool isSequenceEqual = Enumerable.SequenceEqual(messages, act_msgs);
             Assert.IsTrue(isSequenceEqual);
         }
     }

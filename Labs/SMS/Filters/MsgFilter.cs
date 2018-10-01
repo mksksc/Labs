@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SMS.Filters
@@ -22,7 +23,7 @@ namespace SMS.Filters
         private static IEnumerable<Message> ApplyOrFilter(MsgFilterObj filterObj)
         {
             return filterObj.Messages.Where(msg => CheckUser(msg, filterObj.User) ||
-                    CheckText(msg, filterObj.MessageText) ||
+                    (filterObj.MessageText != null && filterObj.MessageText != string.Empty && msg.Text.Contains(filterObj.MessageText, StringComparison.OrdinalIgnoreCase)) ||
                     (filterObj.StartTime != null && filterObj.StartTime <= msg.ReceivingTime) ||
                     (filterObj.EndTime != null && filterObj.EndTime <= msg.ReceivingTime));
         }
@@ -30,7 +31,7 @@ namespace SMS.Filters
         private static IEnumerable<Message> ApplyAndFilter(MsgFilterObj filterObj)
         {
             return filterObj.Messages.Where(msg => CheckUser(msg, filterObj.User) &&
-                    CheckText(msg, filterObj.MessageText) &&
+                    (filterObj.MessageText == null || filterObj.MessageText == string.Empty || msg.Text.Contains(filterObj.MessageText, StringComparison.OrdinalIgnoreCase)) &&
                     (filterObj.StartTime == null || filterObj.StartTime <= msg.ReceivingTime) &&
                     (filterObj.EndTime == null || filterObj.EndTime >= msg.ReceivingTime));
         }
@@ -40,9 +41,9 @@ namespace SMS.Filters
             return user == null || user == "All" || message.User == user;
         }
 
-        public static bool CheckText(Message message, string text)
+        private static bool Contains(this string source, string toCheck, StringComparison comp)
         {
-            return text == null || text == string.Empty || message.Text.Contains(text);
+            return source != null && toCheck != null && (source.IndexOf(toCheck, comp) >= 0);
         }
     }
 }
