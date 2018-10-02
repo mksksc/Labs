@@ -52,6 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ChargerTest\BatteryTest.cs" />
+    <Compile Include="ChargerTest\ChargerTaskTest.cs" />
+    <Compile Include="ChargerTest\ChargerThreadTest.cs" />
     <Compile Include="PhoneJackTest\OutputTest.cs" />
     <Compile Include="PhoneJackTest\iPhoneHeadsetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

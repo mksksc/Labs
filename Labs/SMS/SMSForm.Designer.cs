@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.MessageFormatCB = new System.Windows.Forms.ComboBox();
-            this.SMSSendTimer = new System.Windows.Forms.Timer(this.components);
             this.MessageListView = new System.Windows.Forms.ListView();
             this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Message = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,32 +39,29 @@
             this.MsgEndDateTime = new System.Windows.Forms.DateTimePicker();
             this.UseAndCheckBox = new System.Windows.Forms.CheckBox();
             this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.SMSGeneratingBtn = new System.Windows.Forms.Button();
+            this.BatteryBar = new System.Windows.Forms.ProgressBar();
+            this.ChargeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MessageFormatCB
             // 
             this.MessageFormatCB.FormattingEnabled = true;
-            this.MessageFormatCB.Location = new System.Drawing.Point(12, 12);
+            this.MessageFormatCB.Location = new System.Drawing.Point(374, 114);
             this.MessageFormatCB.Name = "MessageFormatCB";
             this.MessageFormatCB.Size = new System.Drawing.Size(242, 21);
             this.MessageFormatCB.TabIndex = 0;
             this.MessageFormatCB.Text = "Select Formatting";
             this.MessageFormatCB.SelectedIndexChanged += new System.EventHandler(this.MessageFormatCB_SelectedIndexChanged);
             // 
-            // SMSSendTimer
-            // 
-            this.SMSSendTimer.Enabled = true;
-            this.SMSSendTimer.Interval = 2000;
-            this.SMSSendTimer.Tick += new System.EventHandler(this.SMSSendTimer_Tick);
-            // 
             // MessageListView
             // 
             this.MessageListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.User,
             this.Message});
-            this.MessageListView.Location = new System.Drawing.Point(12, 122);
+            this.MessageListView.Location = new System.Drawing.Point(12, 143);
             this.MessageListView.Name = "MessageListView";
-            this.MessageListView.Size = new System.Drawing.Size(675, 430);
+            this.MessageListView.Size = new System.Drawing.Size(675, 409);
             this.MessageListView.TabIndex = 1;
             this.MessageListView.TileSize = new System.Drawing.Size(675, 30);
             this.MessageListView.UseCompatibleStateImageBehavior = false;
@@ -125,11 +121,42 @@
             this.RefreshTimer.Interval = 1000;
             this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
             // 
+            // SMSGeneratingBtn
+            // 
+            this.SMSGeneratingBtn.Location = new System.Drawing.Point(12, 12);
+            this.SMSGeneratingBtn.Name = "SMSGeneratingBtn";
+            this.SMSGeneratingBtn.Size = new System.Drawing.Size(242, 29);
+            this.SMSGeneratingBtn.TabIndex = 7;
+            this.SMSGeneratingBtn.Text = "Start ganerate SMS";
+            this.SMSGeneratingBtn.UseVisualStyleBackColor = true;
+            this.SMSGeneratingBtn.Click += new System.EventHandler(this.SMSGeneratingBtn_Click);
+            // 
+            // BatteryBar
+            // 
+            this.BatteryBar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BatteryBar.Location = new System.Drawing.Point(12, 62);
+            this.BatteryBar.Name = "BatteryBar";
+            this.BatteryBar.Size = new System.Drawing.Size(242, 23);
+            this.BatteryBar.TabIndex = 8;
+            // 
+            // ChargeBtn
+            // 
+            this.ChargeBtn.Location = new System.Drawing.Point(12, 91);
+            this.ChargeBtn.Name = "ChargeBtn";
+            this.ChargeBtn.Size = new System.Drawing.Size(242, 23);
+            this.ChargeBtn.TabIndex = 9;
+            this.ChargeBtn.Text = "Start charge";
+            this.ChargeBtn.UseVisualStyleBackColor = true;
+            this.ChargeBtn.Click += new System.EventHandler(this.ChargeBtn_Click);
+            // 
             // SMSForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 564);
+            this.Controls.Add(this.ChargeBtn);
+            this.Controls.Add(this.BatteryBar);
+            this.Controls.Add(this.SMSGeneratingBtn);
             this.Controls.Add(this.UseAndCheckBox);
             this.Controls.Add(this.MsgEndDateTime);
             this.Controls.Add(this.MsgStartDateTime);
@@ -150,7 +177,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox MessageFormatCB;
-        private System.Windows.Forms.Timer SMSSendTimer;
         private System.Windows.Forms.ListView MessageListView;
         private System.Windows.Forms.ColumnHeader User;
         private System.Windows.Forms.ColumnHeader Message;
@@ -160,6 +186,9 @@
         private System.Windows.Forms.DateTimePicker MsgEndDateTime;
         private System.Windows.Forms.CheckBox UseAndCheckBox;
         private System.Windows.Forms.Timer RefreshTimer;
+        private System.Windows.Forms.Button SMSGeneratingBtn;
+        private System.Windows.Forms.ProgressBar BatteryBar;
+        private System.Windows.Forms.Button ChargeBtn;
     }
 }
 

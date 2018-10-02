@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using MobilePhone;
 using SMS.Formatter;
 using SMS.Filters;
+using MobilePhone.Charger;
 
 namespace SMS
 {
@@ -20,6 +21,9 @@ namespace SMS
         private FormatDelegate Formatter;
         private MobilePhoneBase Mobile;
         private int counter;
+        private bool isSMSGenerating;
+        private bool isCharging;
+        private ChargerBase Charger;
 
         public SMSForm()
         {
@@ -32,6 +36,20 @@ namespace SMS
             UsersComboBox.Items.Add("All");
             UsersComboBox.SelectedItem = UsersComboBox.Items[0];
             Mobile.MessageStorage.MessageAdded += OnSMSReceiver;
+            Mobile.Battery.ChargeChanged += RefreshBatteryView;
+            RefreshBatteryView(Mobile.Battery.Charge);
+            Charger = ChargerFactory.GetCharger(Mobile.Battery, ChargerType.Task);
+        }
+
+        private void RefreshBatteryView(sbyte charge)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<sbyte>(RefreshBatteryView),charge);
+                return;
+            }
+
+            BatteryBar.Value = charge;
         }
 
         private void OnSMSReceiver(MobilePhone.Message message)
@@ -69,7 +87,7 @@ namespace SMS
         {
             var filterObj = new MsgFilterObj()
             {
-                Messages = Mobile.MessageStorage.GetMessages(),
+                Messages = Mobile.MessageStorage.GetMessages().ToList(),
                 User = UsersComboBox.SelectedItem as string,
                 MessageText = MsgSearchTextBox.Text,
                 StartTime = null,
@@ -92,26 +110,7 @@ namespace SMS
                 MessageListView.Items.Add(new ListViewItem(new[] { message.User, Formatter(message) }));
             }
         }
-
-        private void SMSSendTimer_Tick(object sender, EventArgs e)
-        {
-            var msg = new MobilePhone.Message(GetRandomUser(), $"Message #{counter++} received");
-            Mobile.ReceiveSMS(msg);
-        }
-
-        private string GetRandomUser()
-        {
-            var users = new string[]
-            {
-                "+308751566825",
-                "+308865211124",
-                "+301111111111",
-                "+307777777777",
-                "+308333333333",
-            };
-            int index = new Random().Next(users.Length);
-            return users[index];
-        }
+        
 
         private ItemMessageFormatCB[] GetMessageFormatCBItems()
         {
@@ -144,6 +143,36 @@ namespace SMS
         private void RefreshTimer_Tick(object sender, EventArgs e)
         {
             RefreshMessagesView();
+        }
+
+        private void SMSGeneratingBtn_Click(object sender, EventArgs e)
+        {
+            if (isSMSGenerating)
+            {
+                SMSGeneratingBtn.Text = "Start ganerate SMS";
+                isSMSGenerating = false;
+                Mobile.StopGenerateSMS();
+                return;
+            }
+
+            SMSGeneratingBtn.Text = "Stop ganerate SMS";
+            isSMSGenerating = true;           
+            Mobile.StartGenerateSMS();
+        }
+
+        private void ChargeBtn_Click(object sender, EventArgs e)
+        {
+            if (isCharging)
+            {
+                isCharging = false;
+                ChargeBtn.Text = "Start charge";
+                Charger.StopChargind();
+                return;
+            }
+
+            ChargeBtn.Text = "Stop charge";
+            Charger.StartChargind();
+            isCharging = true;
         }
     }
 }

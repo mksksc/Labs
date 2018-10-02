@@ -9,6 +9,7 @@ using MobilePhone.Keyboard;
 using MobilePhone.Microphone;
 using MobilePhone.Screen;
 using MobilePhone.SimCard;
+using MobilePhone.SMS;
 
 namespace MobilePhone.Phone
 {
@@ -30,7 +31,7 @@ namespace MobilePhone.Phone
             Screen = new TouchScreen(new TouchManager(), 143.6, 70.9, 2436, 1125,TouchScreenType.MultiTouch);
             Simcard = new Simcard("+380879879455","Life");
             MessageStorage = new MessageStorage();
-            SMSProvider = new SMSProvider(MessageStorage);
+            SMSProvider = SMSProviderFactory.GetProvider(MessageStorage,SMSProviderType.Task);
         }
     }
 }

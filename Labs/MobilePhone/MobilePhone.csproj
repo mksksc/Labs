@@ -44,6 +44,10 @@
     <Compile Include="Battery\IPoverUnit.cs" />
     <Compile Include="Battery\LiIonBattery.cs" />
     <Compile Include="Battery\MobileBattery.cs" />
+    <Compile Include="Charger\ChargerTask.cs" />
+    <Compile Include="Charger\ChargerThread.cs" />
+    <Compile Include="Charger\ChargerBase.cs" />
+    <Compile Include="Charger\ChargerFactory.cs" />
     <Compile Include="Charger\ICharger.cs" />
     <Compile Include="Charger\iPhoneCharger.cs" />
     <Compile Include="Dynamic\MonoSpeaker.cs" />
@@ -81,6 +85,10 @@
     <Compile Include="SMS\Message.cs" />
     <Compile Include="SMS\SMSProvider.cs" />
     <Compile Include="SMS\MessageStorage.cs" />
+    <Compile Include="SMS\SMSProviderBase.cs" />
+    <Compile Include="SMS\SMSProviderFactory.cs" />
+    <Compile Include="SMS\SMSProviderTask.cs" />
+    <Compile Include="SMS\SMSProviderThread.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
