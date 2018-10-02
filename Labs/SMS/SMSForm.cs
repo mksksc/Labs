@@ -26,6 +26,7 @@ namespace SMS
             Mobile = new SimCorpPhone();
 
             InitializeComponent();
+            MsgEndDateTime.Value = DateTime.Now + TimeSpan.FromHours(1);
             MessageFormatCB.Items.AddRange(GetMessageFormatCBItems());
             MessageFormatCB.SelectedItem = MessageFormatCB.Items[0];
             UsersComboBox.Items.Add("All");
