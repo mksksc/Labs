@@ -50,6 +50,12 @@
     <Compile Include="Charger\ChargerFactory.cs" />
     <Compile Include="Charger\ICharger.cs" />
     <Compile Include="Charger\iPhoneCharger.cs" />
+    <Compile Include="ContactBook\Call.cs" />
+    <Compile Include="ContactBook\CallGroup.cs" />
+    <Compile Include="ContactBook\CallGrouped.cs" />
+    <Compile Include="ContactBook\CallProvider.cs" />
+    <Compile Include="ContactBook\CallStorage.cs" />
+    <Compile Include="ContactBook\Contact.cs" />
     <Compile Include="Dynamic\MonoSpeaker.cs" />
     <Compile Include="Dynamic\Speaker.cs" />
     <Compile Include="Dynamic\StereoSpeaker.cs" />

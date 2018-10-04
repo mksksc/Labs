@@ -52,6 +52,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CallTest\CallCompareTest.cs" />
+    <Compile Include="CallTest\CallSortTest.cs" />
     <Compile Include="ChargerTest\BatteryTest.cs" />
     <Compile Include="ChargerTest\ChargerTaskTest.cs" />
     <Compile Include="ChargerTest\ChargerThreadTest.cs" />
